@@ -249,7 +249,7 @@ Before we can use it, we need to load `ggplot2`.
 
 ```{r lib_ggplot2}
 # Load ggplot2 library
-
+library(ggplot2)
 ```
 
 
@@ -338,8 +338,8 @@ ggplot(data = <DATA>) +
 Let's rebuild the histogram of ValuePerSqFt.
 
 ```{r gg_histo1}
-# ggplot(data = ???) +
-#   geom_histogram(mapping = aes(x=???))
+ggplot(data = housing) +
+  geom_histogram(mapping = aes(x=ValuePerSqFt))
 ```
 
 Wow! Look at how the choice of bin width affects the resulting histogram. The
@@ -417,7 +417,7 @@ So, which Boro is mostly to blame for the second hump in the original histogram?
 # Try faceting by Class instead of Boro
 ggplot(housing) + 
   geom_histogram(aes(x=ValuePerSqFt)) + 
-  facet_wrap()
+  facet_wrap(~housing$Class)
 
 ```
 
@@ -482,7 +482,7 @@ Hmm, let's facet it as well by Boro to make it a little easier to see.
 
 ```{r gg_scatter_color_facet}
 # Add a facet by boro to gscatter
-
+gscatter + facet_wrap(~Boro)
 
 ```
 
@@ -498,6 +498,7 @@ install finishes. There's a Close Project menu item under the File menu. Then we
 can just scroll down to here and Run Previous Chunks from the Run dropdown.
 
 ```{r lib_ggthemes}
+install.packages("ggthemes")
 library(ggthemes)
 ```
 
@@ -768,7 +769,7 @@ And of course, no discussion of statistical correlation is complete unless
 we pay homage to the important principle that "Correlation does not imply causation". Not surprisingly, XKCD weighs in on this point in typically brilliant fashion. 
 
 ```{r xkcd}
-#install.packages("RXKCD")
+install.packages("RXKCD")
 library(RXKCD)
 getXKCD(which="552")
 ```
